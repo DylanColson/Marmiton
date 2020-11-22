@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success"> 
+                {{ message }}
+            </div>            
+        {% endfor %}
+
+        <h1>Gestions des recettes</h1>
+
+        <a href="{{ path('admin_create') }}" class="btn btn-primary mb-3">Ajouter</a>
+
+        <table class="table table-stiped">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>TITRE</td>
+                    <td>ACTION</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recette in recettes %}
+                    <tr>
+                        <td>{{recette.id}}</td>
+                        <td>{{recette.titre}}</td>
+                        <td>
+                            <a href="{{ path('admin_edit', {id: recette.id})}}" class="btn btn-secondary">Editer</a>
+                            
+                            <form method="POST" action="{{ path('admin_delete', {id: recette.id})}}" style="display: inline-block;" onsubmit="return confirm('Voulez vous vraiment supprimer cette recette ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('token_id') }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+</table>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+        <h1>Ajouter une recette</h1>
+        
+        {{ form_start(formRecette) }}
+
+            <div class="row">
+                <div class="col-lg-4">
+                    {{ form_row(formRecette.titre)}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                    {{ form_row(formRecette.categorie)}}
+                </div>
+
+                <div class="col-lg-3">
+                    {{ form_row(formRecette.personne)}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_row(formRecette.resumer)}}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(formRecette.imageFile)}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    {{ form_row(formRecette.preparation)}}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(formRecette.temps)}}
+                </div>
+            </div>
+            {{ form_rest(formRecette)}}
+
+            <input type="reset" class="btn btn-danger" value="Annuler">
+            <input type="submit" class="btn btn-success" value="Enregistrer">
+        {{ form_end(formRecette) }}
+
+{% endblock %}
